@@ -38,7 +38,7 @@ exec $whatsapp
 exec $email
 exec $notifications
 exec $steam
-exec swayidle before-sleep $lock
+exec swayidle before-sleep swaylock
 exec waybar
 exec swaync
 exec $cryptomator
