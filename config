@@ -13,7 +13,8 @@ set $terminal "kitty tmux new-session -A -s main"
 set $notes "flatpak run net.cozic.joplin_desktop"
 set $browser "flatpak run io.gitlab.librewolf-community"
 set $file_explorer "kitty tmux new-session -A -s Ex"
-set $discord "flatpak run io.github.spacingbat3.webcord"
+# set $discord "flatpak run io.github.spacingbat3.webcord"
+set $discord "flatpak run com.discordapp.Discord"
 set $steam "flatpak run com.valvesoftware.Steam"
 set $freetube "flatpak run io.freetubeapp.FreeTube"
 set $jellyfin "flatpak run com.github.iwalton3.jellyfin-media-player"
@@ -43,6 +44,7 @@ exec waybar
 exec swaync
 exec $cryptomator
 exec $keyring
+exec corectrl
 
 output * background $wallpaper fill
 output DP-1 mode 1920x1080@165hz adaptive_sync off position 1920,0
