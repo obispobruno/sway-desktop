@@ -7,7 +7,7 @@ set $right o
 set $menu "j4-dmenu-desktop --term=kitty"
 set $screenshot "grim ~/Pictures/Screenshots/$(date +'screenshot_%Y-%m-%d_%H:%M:%S.png')"
 set $clipboard_screenshot "grim - | wl-copy"
-set $screenclip "grim -g "$(slurp -d)" - | wl-copy"
+set $screenclip ~/.local/bin/screenclip.sh
 set $leave ~/.local/bin/leave.sh
 set $terminal "kitty tmux new-session -A -s main"
 set $notes "flatpak run net.cozic.joplin_desktop"
@@ -45,7 +45,7 @@ exec $cryptomator
 exec $keyring
 
 output * background $wallpaper fill
-output DP-1 mode 1920x1080@165hz adaptive_sync on position 1920,0
+output DP-1 mode 1920x1080@165hz adaptive_sync off position 1920,0
 output HDMI-A-1 mode 1920x1080@60hz position 0,0
 
 # Keybindings
@@ -53,13 +53,6 @@ bindsym $mod+q kill
 bindsym $mod+Return exec $terminal
 bindsym $mod+space exec $menu
 bindsym $mod+z exec "dmenu_run -fn 'JetBrains Mono Nerd Font-12'"
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
-bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
-bindsym XF86TouchpadToggle exec "swaymsg input type:touchpad events toggle enabled disabled"
 bindsym $mod+Shift+W exec $whatsapp
 bindsym $mod+y exec $freetube
 bindsym $mod+Shift+J exec $jellyfin
@@ -67,10 +60,21 @@ bindsym $mod+l exec $browser
 bindsym $mod+j exec $notes
 bindsym $mod+Shift+S exec $leave
 bindsym $mod+u exec $file_explorer
-bindsym Print exec $screenshot
-bindsym $mod+Shift+Print exec $clipboard_screenshot
+bindsym Print exec $clipboard_screenshot
+bindsym $mod+Shift+Print exec $screenshot
 bindsym $mod+b exec $clipboard_screenshot
 bindsym --release Shift+Print exec $screenclip
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+bindsym XF86TouchpadToggle exec "swaymsg input type:touchpad events toggle enabled disabled"
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -242,13 +246,17 @@ gaps inner 0
 # client.background       #FFFFFF
 
 input "type:touchpad" {
-  accel_profile adaptive
-  left_handed disabled
-  tap enabled
-  natural_scroll enabled
-  dwt enabled
-  pointer_accel 0.74 # set mouse sensitivity (between -1 and 1)
+  events disabled
 }
+
+# input "type:touchpad" {
+#   accel_profile adaptive
+#   left_handed disabled
+#   tap enabled
+#   natural_scroll enabled
+#   dwt enabled
+#   pointer_accel 0.74 # set mouse sensitivity (between -1 and 1)
+# }
 
 input * {
   xkb_model     pc104angle
