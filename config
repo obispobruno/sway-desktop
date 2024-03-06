@@ -13,9 +13,9 @@ set $terminal "kitty tmux new-session -A -s main"
 set $notes "flatpak run net.cozic.joplin_desktop"
 set $browser "flatpak run io.gitlab.librewolf-community"
 set $file_explorer "kitty tmux new-session -A -s Ex"
-# set $discord "flatpak run io.github.spacingbat3.webcord"
-set $discord "flatpak run com.discordapp.Discord"
-set $steam "flatpak run com.valvesoftware.Steam"
+set $discord "flatpak run io.github.spacingbat3.webcord"
+# set $discord "flatpak run com.discordapp.Discord"
+set $steam "steam"
 set $freetube "flatpak run io.freetubeapp.FreeTube"
 set $jellyfin "flatpak run com.github.iwalton3.jellyfin-media-player"
 set $email "flatpak run com.tutanota.Tutanota"
@@ -157,6 +157,7 @@ assign [class="firefox"] 1
 assign [class="Xournalpp"] 4
 assign [class="Joplin"] 4
 assign [class="steam"] 7
+assign [class="gamescope"] 8
 assign [class="Whatsapp-for-linux"] 5
 assign [class="whatsapp-desktop-linux"] 5
 assign [class="teams-for-linux"] 5
